@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
-// noinspection ES6CheckImport
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Login from './Login'

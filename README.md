@@ -1,3 +1,12 @@
 # Securite-WebApp
 
-Petit site web avec de l'authentification.
+Instruction :
+
+lancer la commande :
+npm install
+
+pour lancer le server :
+node server/server.js
+
+pour lancer le client :
+npm run start

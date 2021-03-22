@@ -82,7 +82,7 @@ export default function Welcome() {
           required
         ></input>
         <br />
-        <input type="submit" value="Subscribe!"></input>
+        <input type="submit" value="Subscribe!" id="submit"></input>
       </form>
       <p>il y a : {nbObject} informations entrées</p>
       {dataList.map((dataObject) => {

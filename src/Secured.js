@@ -1,36 +1,46 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Keycloak from "keycloak-js";
 
-class Secured extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { keycloak: null, authenticated: false };
-  }
+export default function Secured() {
+  let [keycloak, setKeycloak] = useState(null);
+  let [authenticated, setauthenticated] = useState(false);
+  let [listeInfoBancaire, setListInfoBancaire] = useState([]);
 
-  componentDidMount() {
+  useEffect(() => {
     console.log("componentDidMount 1");
     const keycloak = Keycloak("keycloak.json");
     keycloak.init({ onLoad: "login-required" }).then((authenticated) => {
       console.log("componentDidMount 2");
-      this.setState({ keycloak: keycloak, authenticated: authenticated });
+      setKeycloak(keycloak);
+      setauthenticated(authenticated);
     });
-  }
+    handleRefresh();
+  }, []);
 
-  render() {
-    if (this.state.keycloak) {
-      if (this.state.authenticated)
-        return (
-          <div>
-            <p>
-              This is a Keycloak-secured component of your application. You
-              shouldn't be able to see this unless you've authenticated with
-              Keycloak.
-            </p>
-          </div>
-        );
-      else return <div>Unable to authenticate!</div>;
-    }
-    return <div>Initializing Keycloak...</div>;
+  const handleRefresh = async () => {
+    const response = await fetch("/api/getData");
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    console.log("DEBUG, front", body.listeInfoBancaire);
+  };
+
+  if (keycloak) {
+    if (authenticated)
+      return (
+        <div>
+          <p>
+            This is a Keycloak-secured component of your application. You
+            shouldn't be able to see this unless you've authenticated with
+            Keycloak.
+          </p>
+        </div>
+      );
+    else return <div>Unable to authenticate!</div>;
   }
+  return (
+    <div>
+      <p>Initializing Keycloak...</p>
+      <button onClick={handleRefresh}>click here</button>
+    </div>
+  );
 }
-export default Secured;

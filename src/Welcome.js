@@ -14,32 +14,16 @@ export default function Welcome() {
       codeSecuCarte: event.target.codeSecuCarte.value,
     };
 
-    dataList.push(dataObject);
-    setDataList(dataList);
+    setDataList((prevItems) => [...prevItems, dataObject]);
     setNbObject(nbObject + 1);
 
-    // var form = new FormData(document.getElementById("dataForm"));
-
-    // fetch("http://localhost:8080/", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     dataObject: dataObject,
-    //   }),
-    // }).then(
-    //   function (res) {
-    //     if (res.ok) {
-    //       alert("Perfect! ");
-    //     } else if (res.status === 401) {
-    //       alert("Oops! ");
-    //     }
-    //   },
-    //   function (e) {
-    //     alert("Error submitting form!");
-    //   }
-    // );
+    fetch("/api/updateData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ dataObject: dataObject }),
+    });
   };
 
   return (
@@ -61,6 +45,7 @@ export default function Welcome() {
           type="text"
           name="numeroCarte"
           id="numeroCarte"
+          // pattern="[0-9]+"
           required
         ></input>
         <br />
@@ -70,6 +55,7 @@ export default function Welcome() {
           type="text"
           name="dateCarte"
           id="dateCarte"
+          // pattern="[0-9]{2}\/[0-9]{2}"
           required
         ></input>
         <br />
@@ -79,6 +65,7 @@ export default function Welcome() {
           type="text"
           name="codeSecuCarte"
           id="codeSecuCarte"
+          // pattern="[0-9]{3}"
           required
         ></input>
         <br />

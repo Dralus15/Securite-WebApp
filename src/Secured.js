@@ -21,6 +21,7 @@ export default function Secured() {
     const response = await fetch("/api/getData");
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
+    setListInfoBancaire(body.listeInfoBancaire);
     console.log("DEBUG, front", body.listeInfoBancaire);
   };
 
@@ -40,7 +41,19 @@ export default function Secured() {
   return (
     <div>
       <p>Initializing Keycloak...</p>
-      <button onClick={handleRefresh}>click here</button>
+      <button onClick={handleRefresh}>réactualiser les données</button>
+      {listeInfoBancaire.map((dataObject) => {
+        return (
+          <div key={dataObject.idData}>
+            <p>information bancaire n°{dataObject.idData}</p>
+            <p>nom : {dataObject.nomCarte}</p>
+            <p>numero : {dataObject.numeroCarte}</p>
+            <p>date validité : {dataObject.dateCarte}</p>
+            <p>code sécurité : {dataObject.codeSecuCarte}</p>
+            <p>........................</p>
+          </div>
+        );
+      })}
     </div>
   );
 }

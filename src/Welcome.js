@@ -71,7 +71,7 @@ export default function Welcome() {
         <br />
         <input type="submit" value="Subscribe!"></input>
       </form>
-      <p>il y a : {nbObject} informations entrées</p>
+      <p>vous avez entré {nbObject} nouvelles entrées</p>
       {dataList.map((dataObject) => {
         return (
           <div key={dataObject.idData}>

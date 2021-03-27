@@ -1,3 +1,11 @@
+/*--------------------------------------------------------------------------------
+################################################################################
+ * DESCRIPTION :
+ * components setting up the routes of the webapp and two links redirecting to 
+   the two pages of the webapp
+################################################################################
+------------------------------------------------------------------------------*/
+
 import React, { Component } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import Welcome from "./Welcome";

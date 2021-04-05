@@ -22,12 +22,12 @@ export default function Secured() {
   //actions to do when component is mounting
   useEffect(() => {
     console.log("componentDidMount 1");
-    const keycloak = Keycloak("keycloak.json");
-    keycloak.init({ onLoad: "login-required" }).then((authenticated) => {
-      console.log("componentDidMount 2");
-      setKeycloak(keycloak);
-      setauthenticated(authenticated);
-    });
+    // const keycloak = Keycloak("keycloak.json");
+    // keycloak.init({ onLoad: "login-required" }).then((authenticated) => {
+    //   console.log("componentDidMount 2");
+    //   setKeycloak(keycloak);
+    //   setauthenticated(authenticated);
+    // });
     handleRefresh();
   }, []);
 
@@ -62,12 +62,11 @@ export default function Secured() {
       {listeInfoBancaire.map((dataObject) => {
         return (
           <div key={dataObject.idData}>
-            <p>information bancaire n°{dataObject.idData}</p>
+            <p>........................</p>
             <p>nom : {dataObject.nomCarte}</p>
             <p>numero : {dataObject.numeroCarte}</p>
             <p>date validité : {dataObject.dateCarte}</p>
             <p>code sécurité : {dataObject.codeSecuCarte}</p>
-            <p>........................</p>
           </div>
         );
       })}

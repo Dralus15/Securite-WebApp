@@ -21,6 +21,8 @@ export default function Welcome() {
   //state containing the number of info submitted during this session
   let [nbObject, setNbObject] = useState(0);
 
+  let [errorInsertion, setErrorInsertion] = useState(false);
+
   //actions on form validation
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,24 +36,34 @@ export default function Welcome() {
       codeSecuCarte: event.target.codeSecuCarte.value,
     };
 
-    //setting of the states
-    setDataList((prevItems) => [...prevItems, dataObject]);
-    setNbObject(nbObject + 1);
-
     //POST request to the server sending the object of the user
-    fetch("/api/updateData", {
+    let response = await fetch("/api/updateData", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ dataObject: dataObject }),
     });
+    const res = await response.text();
+    if (!res.localeCompare("error")) {
+      setErrorInsertion(true);
+    } else {
+      //setting of the states
+      setDataList((prevItems) => [...prevItems, dataObject]);
+      setNbObject(nbObject + 1);
+      setErrorInsertion(false);
+    }
   };
 
   return (
     <div>
-      <p>public component</p>
+      <p>bienvenue sur le composant public</p>
       {/*form for entering banking info*/}
+      {errorInsertion && (
+        <p>
+          <mark>Une carte ayant le même numéro est déjà enregistré</mark>
+        </p>
+      )}
       <form onSubmit={handleSubmit}>
         <p>Entrez le nom associé à la carte</p>
         <input

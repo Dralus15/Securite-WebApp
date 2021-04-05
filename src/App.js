@@ -19,10 +19,10 @@ class App extends Component {
         <div className="container">
           <ul>
             <li>
-              <Link to="/">public component</Link>
+              <Link to="/">page d'enregistrement de données bancaires</Link>
             </li>
             <li>
-              <Link to="/secured">secured component</Link>
+              <Link to="/secured">page d'administration</Link>
             </li>
           </ul>
           <Route exact path="/" component={Welcome} />

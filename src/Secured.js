@@ -22,12 +22,12 @@ export default function Secured() {
   //actions to do when component is mounting
   useEffect(() => {
     console.log("componentDidMount 1");
-    // const keycloak = Keycloak("keycloak.json");
-    // keycloak.init({ onLoad: "login-required" }).then((authenticated) => {
-    //   console.log("componentDidMount 2");
-    //   setKeycloak(keycloak);
-    //   setauthenticated(authenticated);
-    // });
+    const keycloak = Keycloak("keycloak.json");
+    keycloak.init({ onLoad: "login-required" }).then((authenticated) => {
+      console.log("componentDidMount 2");
+      setKeycloak(keycloak);
+      setauthenticated(authenticated);
+    });
     handleRefresh();
   }, []);
 

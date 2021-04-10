@@ -51,25 +51,25 @@ export default function Secured() {
             shouldn't be able to see this unless you've authenticated with
             Keycloak.
           </p>
+          <button onClick={handleRefresh}>réactualiser les données</button>
+          {listeInfoBancaire.map((dataObject) => {
+            return (
+              <div key={dataObject.idData}>
+                <p>........................</p>
+                <p>nom : {dataObject.nomCarte}</p>
+                <p>numero carte : {dataObject.numeroCarte}</p>
+                <p>date validité : {dataObject.dateCarte}</p>
+                <p>code sécurité : {dataObject.codeSecuCarte}</p>
+              </div>
+            );
+          })}
         </div>
       );
-    else return <div>Unable to authenticate!</div>;
+    else return <div>l'authentification a échoué</div>;
   }
   return (
     <div>
       <p>Initializing Keycloak...</p>
-      <button onClick={handleRefresh}>réactualiser les données</button>
-      {listeInfoBancaire.map((dataObject) => {
-        return (
-          <div key={dataObject.idData}>
-            <p>........................</p>
-            <p>nom : {dataObject.nomCarte}</p>
-            <p>numero carte : {dataObject.numeroCarte}</p>
-            <p>date validité : {dataObject.dateCarte}</p>
-            <p>code sécurité : {dataObject.codeSecuCarte}</p>
-          </div>
-        );
-      })}
     </div>
   );
 }

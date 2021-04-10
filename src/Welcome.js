@@ -79,7 +79,7 @@ export default function Welcome() {
           type="text"
           name="numeroCarte"
           id="numeroCarte"
-          // pattern="[0-9]+"
+          pattern="[0-9]+"
           required
         ></input>
         <br />
@@ -89,7 +89,7 @@ export default function Welcome() {
           type="text"
           name="dateCarte"
           id="dateCarte"
-          // pattern="[0-9]{2}\/[0-9]{2}"
+          pattern="[0-9]{2}\/[0-9]{2}"
           required
         ></input>
         <br />
@@ -99,7 +99,7 @@ export default function Welcome() {
           type="text"
           name="codeSecuCarte"
           id="codeSecuCarte"
-          // pattern="[0-9]{3}"
+          pattern="[0-9]{3}"
           required
         ></input>
         <br />

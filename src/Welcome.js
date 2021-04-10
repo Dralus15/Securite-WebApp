@@ -57,14 +57,14 @@ export default function Welcome() {
 
   return (
     <div>
-      <p>bienvenue sur le composant public</p>
+      <p className={"test-class"}>bienvenue sur le composant public</p>
       {/*form for entering banking info*/}
       {errorInsertion && (
         <p>
           <mark>Une carte ayant le même numéro est déjà enregistré</mark>
         </p>
       )}
-      <form onSubmit={handleSubmit}>
+      <form id="card-form" className={"card-form"} onSubmit={handleSubmit}>
         <p>Entrez le nom associé à la carte</p>
         <input
           autoComplete="off"
@@ -110,7 +110,7 @@ export default function Welcome() {
       <p>vous avez entré {nbObject} nouvelles entrées</p>
       {dataList.map((dataObject) => {
         return (
-          <div key={dataObject.idData}>
+          <div className={"dataObject"} key={dataObject.idData}>
             <p>information bancaire n°{dataObject.idData}</p>
             <p>nom : {dataObject.nomCarte}</p>
             <p>numero : {dataObject.numeroCarte}</p>

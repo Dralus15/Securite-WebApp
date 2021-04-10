@@ -1,11 +1,25 @@
+/*--------------------------------------------------------------------------------
+################################################################################
+ * DESCRIPTION : component accessible only if the user can be authenticated by 
+                 the keycloak. It show the banking data stored in the server
+ * STATES (input) :
+          - keycloak : state containing the keycloak configuration of the app
+          - authenticated : state containing a boolean telling if the user is 
+            authenticated or not
+          - listeInfoBancaire : state containing the banking info of the server
+################################################################################
+------------------------------------------------------------------------------*/
+
 import React, { useState, useEffect } from "react";
 import Keycloak from "keycloak-js";
 
 export default function Secured() {
+  //state initialization
   let [keycloak, setKeycloak] = useState(null);
   let [authenticated, setauthenticated] = useState(false);
   let [listeInfoBancaire, setListInfoBancaire] = useState([]);
 
+  //actions to do when component is mounting
   useEffect(() => {
     console.log("componentDidMount 1");
     const keycloak = Keycloak("keycloak.json");
@@ -17,7 +31,9 @@ export default function Secured() {
     handleRefresh();
   }, []);
 
+  //fetch the data from server
   const handleRefresh = async () => {
+    //GET request for data from server
     const response = await fetch("/api/getData");
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
@@ -25,6 +41,7 @@ export default function Secured() {
     console.log("DEBUG, front", body.listeInfoBancaire);
   };
 
+  //if user is authenticated show info
   if (keycloak) {
     if (authenticated)
       return (
@@ -45,12 +62,11 @@ export default function Secured() {
       {listeInfoBancaire.map((dataObject) => {
         return (
           <div key={dataObject.idData}>
-            <p>information bancaire n°{dataObject.idData}</p>
+            <p>........................</p>
             <p>nom : {dataObject.nomCarte}</p>
-            <p>numero : {dataObject.numeroCarte}</p>
+            <p>numero carte : {dataObject.numeroCarte}</p>
             <p>date validité : {dataObject.dateCarte}</p>
             <p>code sécurité : {dataObject.codeSecuCarte}</p>
-            <p>........................</p>
           </div>
         );
       })}

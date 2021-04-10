@@ -66,6 +66,24 @@ context ('login',   () => {
             cy.contains("code sécurité : " + code);
         });
 
+        it('note repeat', () => {
+            const nom = 'BNP';
+            const numero = '1355246635775677';
+            const date = '02/23';
+            const code = '333';
+            cy.get("input#nomCarte").clear()
+                .type(nom);
+            cy.get("input#numeroCarte").clear()
+                .type(numero);
+            cy.get("input#dateCarte").clear()
+                .type(date);
+            cy.get("input#codeSecuCarte").clear()
+                .type(code);
+            cy.get('input#submit').click();
+            cy.contains("Une carte ayant le même numéro est déjà enregistré").click();
+
+        });
+
 
     });
 

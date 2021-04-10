@@ -1,11 +1,9 @@
 context ('login',   () => {
-    beforeEach(() => {
-        cy.visit('http://localhost:3000')
-    })
 
     describe('test of index', () =>{
 
         it('ref public marche', () => {
+            cy.visit('http://localhost:3000')
             cy.contains("public component").click();
             cy.location().should((location) =>{
                 expect(location.href).to.eq("http://localhost:3000/")
@@ -15,19 +13,20 @@ context ('login',   () => {
 
 
         it('text marche', () => {
+            cy.contains("bienvenue sur le composant public").click();
             cy.contains("Entrez le nom associé à la carte").click();
             cy.contains("Entrez le numéro associé à la carte").click();
             cy.contains("Entrez la date de validité").click();
             cy.contains("Entrez le code de sécurité").click();
-            cy.contains("il y a : 0 informations entrées").click();
+            cy.contains("vous avez entré 0 nouvelles entrées").click();
         });
 
 
-        it('form marche', () => {
-            const nom = 'SG'
-            const numero = '1234123412341234'
-            const date = '09/22'
-            const code = '222'
+        it('form marche1', () => {
+            const nom = 'SG';
+            const numero = '1234123412341234';
+            const date = '09/22';
+            const code = '222';
             cy.get("input#nomCarte")
                 .type(nom);
             cy.get("input#numeroCarte")
@@ -37,12 +36,34 @@ context ('login',   () => {
             cy.get("input#codeSecuCarte")
                 .type(code);
             cy.get('input#submit').click();
-            cy.contains("il y a : 1 informations entrées").click();
-            cy.contains("information bancaire n°0")
-            cy.contains("nom : " + nom)
-            cy.contains("numero : " + numero)
-            cy.contains("date validité : " + date)
-            cy.contains("code sécurité : " + code)
+            cy.contains("vous avez entré 1 nouvelles entrées").click();
+            cy.contains("information bancaire n°0");
+            cy.contains("nom : " + nom);
+            cy.contains("numero : " + numero);
+            cy.contains("date validité : " + date);
+            cy.contains("code sécurité : " + code);
+        });
+
+        it('form marche2', () => {
+            const nom = 'BNP';
+            const numero = '1355246635775677';
+            const date = '02/23';
+            const code = '333';
+            cy.get("input#nomCarte").clear()
+                .type(nom);
+            cy.get("input#numeroCarte").clear()
+                .type(numero);
+            cy.get("input#dateCarte").clear()
+                .type(date);
+            cy.get("input#codeSecuCarte").clear()
+                .type(code);
+            cy.get('input#submit').click();
+            cy.contains("vous avez entré 2 nouvelles entrées").click();
+            cy.contains("information bancaire n°1");
+            cy.contains("nom : " + nom);
+            cy.contains("numero : " + numero);
+            cy.contains("date validité : " + date);
+            cy.contains("code sécurité : " + code);
         });
 
 

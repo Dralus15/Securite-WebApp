@@ -54,8 +54,8 @@ context ('login',   () => {
 
             cy.contains("nom : SG").click();
             cy.contains("numero carte : 1234123412341234").click();
-            cy.contains("date validité : 09/23").click();
-            cy.contains("code sécurité : 999");
+            cy.contains("date validité : 09/22").click();
+            cy.contains("code sécurité : 222");
 
             cy.contains("nom : BNP").click();
             cy.contains("numero carte : 1355246635775677").click();

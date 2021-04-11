@@ -70,6 +70,7 @@ export default function Welcome() {
           type="text"
           name="nomCarte"
           id="nomCarte"
+          pattern="/^[a-z ,.'-]+$/i"
           required
         ></input>
         <br />

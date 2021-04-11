@@ -1,4 +1,4 @@
-instruction to use this app.
+# instruction to use this app.
 
 You have to start the front end, the backend and a keycloak server
 
@@ -17,3 +17,14 @@ and add 'http://localhost:3000/*' to the field 'valid redirect URLs'
 create a user with the username and password you want
 
 now you can use our app :)
+
+
+# test of cypress
+
+Two test files: index.spec.js and secure.spec.js in the directory /cypress/integration/
+
+run the test of cypress: npx cypress open
+
+note: in the test of login, we use the user created in keycloak, so you can change the test by your user information.
+
+# test with nightwatch and mockserver

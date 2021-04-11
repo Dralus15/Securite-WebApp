@@ -1,7 +1,14 @@
+/*--------------------------------------------------------------------------------
+################################################################################
+ * the test of page public component by cypress
+################################################################################
+------------------------------------------------------------------------------*/
+
 context ('login',   () => {
 
     describe('test of index', () =>{
 
+        // test of  the lien public component
         it('ref public marche', () => {
             cy.visit('http://localhost:3000')
             cy.contains("public component").click();
@@ -11,7 +18,7 @@ context ('login',   () => {
             })
         });
 
-
+        // test for the fixed texts
         it('text marche', () => {
             cy.contains("bienvenue sur le composant public").click();
             cy.contains("Entrez le nom associé à la carte").click();
@@ -21,7 +28,7 @@ context ('login',   () => {
             cy.contains("vous avez entré 0 nouvelles entrées").click();
         });
 
-
+        // test for input and button
         it('form marche1', () => {
             const nom = 'SG';
             const numero = '1234123412341234';
@@ -44,6 +51,7 @@ context ('login',   () => {
             cy.contains("code sécurité : " + code);
         });
 
+        // test for input and button
         it('form marche2', () => {
             const nom = 'BNP';
             const numero = '1355246635775677';
@@ -66,6 +74,7 @@ context ('login',   () => {
             cy.contains("code sécurité : " + code);
         });
 
+        // test for same input
         it('note repeat', () => {
             const nom = 'BNP';
             const numero = '1355246635775677';

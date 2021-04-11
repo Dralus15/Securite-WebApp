@@ -1,3 +1,8 @@
+/*--------------------------------------------------------------------------------
+################################################################################
+ * the test of page secured component by cypress
+################################################################################
+------------------------------------------------------------------------------*/
 context ('login',   () => {
 
     beforeEach(() => {
@@ -5,6 +10,8 @@ context ('login',   () => {
     });
 
     describe('test secure', () =>{
+
+        // test of the lien secured component
         it(' href secure marche', () => {
             cy.contains("secured component").click();
             cy.location().should((location) =>{
@@ -12,6 +19,8 @@ context ('login',   () => {
             })
         });
 
+
+        // test for the page login of keycloak
         it(' page login', () => {
             cy.contains("secured component").click();
             cy.get("div#kc-header-wrapper").contains("demo");
@@ -34,6 +43,8 @@ context ('login',   () => {
             });
         });
 
+
+        // test for the info of secured page
         it(' page secured', () => {
             cy.contains("secured component").click();
             cy.location().should((location) =>{
@@ -63,6 +74,8 @@ context ('login',   () => {
             cy.contains("code sécurité : 333").click();
         });
 
+
+        // test for the liens
         it(' ref ', () => {
             cy.contains("secured component").click();
             cy.location().should((location) =>{

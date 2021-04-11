@@ -18,7 +18,7 @@ create a user with the username and password you want
 
 now you can use our app :)
 
-##keycloak test
+##mock test
 
 we use mock and nightwatch to test record bank card information without login by keycloak.
 
